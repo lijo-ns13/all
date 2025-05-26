@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input id="textInput" placeholder="Enter anyting" />
+        <h1>this is a heading</h1>
+        <button id="btn">click me</button>
+        <script>
+        const textInput=document.getElementById("textInput");
+        textInput.addEventListener("keydown",()=>{
+            if(event.key=='Enter'){
+                alert(event.target.value);
+            }
+        })
+        const btn=document.getElementById("btn");
+        // btn.addEventListener("click",()=>{
+        //     console.log("clikced")
+        //     alert("clikced")
+        // })
+        // To successfully remove an event listener, you must:
+
+// Pass the exact same function reference that was used in addEventListener.
+        // not remove because you want to passs named function as a reference**
+        // btn.removeEventListener("click",()=>{
+        //     alert("removed")
+        // })
+        function handleFn(){
+            console.log("removed")
+            alert("clicked")
+        }
+        btn.addEventListener("click",handleFn);
+        // btn.removeEventListener("click",handleFn);
+        function debounce(fn, delay) {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, arguments), delay);
+  };
+}
+
+window.addEventListener("resize", debounce(() => {
+  console.log("Debounced resize");
+}, 300));
+
+    </script>
+    </body>
+</html>
+
+<!-- 5. What's the third parameter in addEventListener?
+Answer:
+The third parameter can be a boolean (useCapture) or an object with options like { once, capture, passive }. -->
